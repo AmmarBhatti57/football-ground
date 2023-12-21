@@ -1,0 +1,3 @@
+use case 2: junaid 
+payment:
+this use case is use to recieve payments
