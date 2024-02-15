@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://main" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://main" xmlns:intf="http://main" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="insert">
+    <complexType>
+     <sequence>
+      <element name="Booking_ID" type="xsd:int"/>
+      <element name="Team_ID" type="xsd:int"/>
+      <element name="Start_DATE" type="xsd:string"/>
+      <element name="End_DATE" type="xsd:string"/>
+      <element name="Fees" type="xsd:int"/>
+      <element name="Payment_STATUS" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertResponse">
+    <complexType>
+     <sequence>
+      <element name="insertReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="insertRequest">
+
+      <wsdl:part element="impl:insert" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertResponse">
+
+      <wsdl:part element="impl:insertResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="binsert">
+
+      <wsdl:operation name="insert">
+
+         <wsdl:input message="impl:insertRequest" name="insertRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertResponse" name="insertResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="binsertSoapBinding" type="impl:binsert">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="insert">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="binsertService">
+
+      <wsdl:port binding="impl:binsertSoapBinding" name="binsert">
+
+         <wsdlsoap:address location="http://localhost:8080/footballground/services/binsert"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

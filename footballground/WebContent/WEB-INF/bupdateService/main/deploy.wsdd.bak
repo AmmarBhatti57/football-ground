@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from bupdateService WSDL service -->
+
+  <service name="bupdate" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://main"/>
+      <parameter name="wsdlServiceElement" value="bupdateService"/>
+      <parameter name="schemaQualified" value="http://main"/>
+      <parameter name="wsdlServicePort" value="bupdate"/>
+      <parameter name="className" value="main.BupdateSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="bupdate"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="update" qname="operNS:update" xmlns:operNS="http://main" returnQName="retNS:updateReturn" xmlns:retNS="http://main" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:Booking_ID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newTeam_ID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newStart_DATE" xmlns:pns="http://main" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newEnd_DATE" xmlns:pns="http://main" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newFees" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:newPayment_STATUS" xmlns:pns="http://main" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="update"/>
+
+  </service>
+</deployment>

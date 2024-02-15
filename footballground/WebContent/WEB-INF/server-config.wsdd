@@ -1,0 +1,146 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\user\Desktop\eclipse\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\footballground\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="Delete" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="delete" qname="ns1:delete" returnQName="ns1:deleteReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:Team_ID" type="xsd:int"/>
+  </ns2:operation>
+  <ns1:parameter name="allowedMethods" value="delete"/>
+  <ns1:parameter name="wsdlPortType" value="Delete"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Delete"/>
+  <ns1:parameter name="className" value="main.Delete"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="DeleteService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="binsert" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="insert" qname="ns2:insert" returnQName="ns2:insertReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:Booking_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns2:Team_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns2:Start_DATE" type="xsd:string"/>
+   <ns1:parameter qname="ns2:End_DATE" type="xsd:string"/>
+   <ns1:parameter qname="ns2:Fees" type="xsd:int"/>
+   <ns1:parameter qname="ns2:Payment_STATUS" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="insert"/>
+  <ns1:parameter name="wsdlPortType" value="binsert"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="binsert"/>
+  <ns1:parameter name="className" value="main.binsert"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="binsertService"/>
+ </ns1:service>
+ <ns1:service name="bdelt" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="delete" qname="ns3:delete" returnQName="ns3:deleteReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:Booking_ID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="delete"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="bdelt"/>
+  <ns1:parameter name="className" value="main.bdelt"/>
+  <ns1:parameter name="wsdlServicePort" value="bdelt"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="bdeltService"/>
+ </ns1:service>
+ <ns1:service name="bupdate" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="update" qname="ns4:update" returnQName="ns4:updateReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:Booking_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns4:newTeam_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns4:newStart_DATE" type="xsd:string"/>
+   <ns1:parameter qname="ns4:newEnd_DATE" type="xsd:string"/>
+   <ns1:parameter qname="ns4:newFees" type="xsd:int"/>
+   <ns1:parameter qname="ns4:newPayment_STATUS" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="update"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="bupdate"/>
+  <ns1:parameter name="className" value="main.bupdate"/>
+  <ns1:parameter name="wsdlServicePort" value="bupdate"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="bupdateService"/>
+ </ns1:service>
+ <ns1:service name="INSERT" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="insert" qname="ns5:insert" returnQName="ns5:insertReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:Team_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns5:Name" type="xsd:string"/>
+   <ns1:parameter qname="ns5:Established_YEAR" type="xsd:string"/>
+   <ns1:parameter qname="ns5:Captain_ID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="insert"/>
+  <ns1:parameter name="wsdlPortType" value="INSERT"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="INSERT"/>
+  <ns1:parameter name="className" value="main.INSERT"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="INSERTService"/>
+ </ns1:service>
+ <ns1:service name="Update" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="update" qname="ns6:update" returnQName="ns6:updateReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:Team_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns6:newEstablished_YEAR" type="xsd:int"/>
+   <ns1:parameter qname="ns6:Captain_ID" type="xsd:int"/>
+   <ns1:parameter qname="ns6:Name" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="update"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Update"/>
+  <ns1:parameter name="className" value="main.Update"/>
+  <ns1:parameter name="wsdlServicePort" value="Update"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="UpdateService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
